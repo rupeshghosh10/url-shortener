@@ -29,7 +29,19 @@ public class TinyUrlService(TinyUrlDbContext db) : ITinyUrlService
         return encodedKey;
     }
 
-    public async Task<bool> UrlExists(string url)
+    public async Task<string> GetUrl(string key)
+    {
+        var urlMapping = await db.UrlMappings.FirstOrDefaultAsync(x => x.UrlKey == key);
+
+        if (urlMapping is null)
+        {
+            throw new KeyNotFoundException();
+        }
+
+        return urlMapping.LongUrl;
+    }
+
+    private async Task<bool> UrlExists(string url)
     {
         return await db.UrlMappings.AnyAsync(x => x.LongUrl == url);
     }

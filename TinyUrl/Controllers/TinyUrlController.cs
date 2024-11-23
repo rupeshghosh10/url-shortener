@@ -21,4 +21,18 @@ public class TinyUrlController(ITinyUrlService tinyUrlService) : ControllerBase
 
         return Ok(response);
     }
+
+    [HttpGet("/{key}")]
+    public async Task<IActionResult> Get(string key)
+    {
+        try
+        {
+            var url = await tinyUrlService.GetUrl(key);
+            return Redirect(url);
+        }
+        catch
+        {
+            return NotFound();
+        }
+    }
 }
