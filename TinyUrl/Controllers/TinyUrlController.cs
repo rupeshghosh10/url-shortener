@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using TinyUrl.DTOs;
 
 namespace TinyUrl.Controllers;
 
@@ -6,9 +7,10 @@ namespace TinyUrl.Controllers;
 [Route("[controller]")]
 public class TinyUrlController : ControllerBase
 {
-    [HttpGet]
-    public IActionResult Get()
+    [HttpPost]
+    public ActionResult<ShortenUrlResponse> Post([FromBody] ShortenUrlRequest request)
     {
-        return Ok("Hello World");
+        var response = new ShortenUrlResponse();
+        return Ok(response);
     }
 }

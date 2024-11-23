@@ -8,7 +8,7 @@ public class UrlMapping
 {
     public int Id { get; init; }
 
-    [MaxLength(250)] 
+    [MaxLength(500)] 
     public string LongUrl { get; init; } = null!;
 
     [MaxLength(12)] 
