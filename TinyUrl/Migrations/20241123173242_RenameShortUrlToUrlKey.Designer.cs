@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TinyUrl.Data;
@@ -11,9 +12,11 @@ using TinyUrl.Data;
 namespace TinyUrl.Migrations
 {
     [DbContext(typeof(TinyUrlDbContext))]
-    partial class TinyUrlDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241123173242_RenameShortUrlToUrlKey")]
+    partial class RenameShortUrlToUrlKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,7 +48,7 @@ namespace TinyUrl.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UrlKey", "LongUrl")
+                    b.HasIndex("UrlKey")
                         .IsUnique();
 
                     b.ToTable("UrlMappings");

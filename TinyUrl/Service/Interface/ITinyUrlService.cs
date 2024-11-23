@@ -2,5 +2,6 @@ namespace TinyUrl.Service.Interface;
 
 public interface ITinyUrlService
 {
-    string ShortenUrl(string url);
+    Task<string> ShortenUrl(string url);
+    Task<bool> UrlExists(string url);
 }

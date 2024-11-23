@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TinyUrl.Models;
 
-[Index(nameof(ShortUrl), IsUnique = true)]
+[Index(nameof(UrlKey), nameof(LongUrl), IsUnique = true)]
 public class UrlMapping
 {
     public int Id { get; init; }
@@ -12,7 +12,7 @@ public class UrlMapping
     public string LongUrl { get; init; } = null!;
 
     [MaxLength(12)] 
-    public string ShortUrl { get; init; } = null!;
+    public string UrlKey { get; init; } = null!;
 
     public DateTime CreationDate { get; init; }
 }

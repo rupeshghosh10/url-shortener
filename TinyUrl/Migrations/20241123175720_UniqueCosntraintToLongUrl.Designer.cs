@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TinyUrl.Data;
@@ -11,9 +12,11 @@ using TinyUrl.Data;
 namespace TinyUrl.Migrations
 {
     [DbContext(typeof(TinyUrlDbContext))]
-    partial class TinyUrlDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241123175720_UniqueCosntraintToLongUrl")]
+    partial class UniqueCosntraintToLongUrl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
