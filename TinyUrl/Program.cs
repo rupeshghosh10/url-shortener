@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TinyUrl.Data;
+using TinyUrl.Service;
+using TinyUrl.Service.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,7 @@ var connectionString = builder.Configuration.GetConnectionString("TinyUrlDatabas
 builder.Services.AddControllers();
 builder.Services.AddDbContext<TinyUrlDbContext>(o => o.UseNpgsql(connectionString));
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<ITinyUrlService, TinyUrlService>();
 
 var app = builder.Build();
 
