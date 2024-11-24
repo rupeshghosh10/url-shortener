@@ -12,10 +12,12 @@ public class TinyUrlController(ITinyUrlService tinyUrlService) : ControllerBase
     public async Task<ActionResult<ShortenUrlResponse>> Post([FromBody] ShortenUrlRequest request)
     {
         var shortenUrKey = await tinyUrlService.ShortenUrl(request.Url);
+        var scheme = HttpContext.Request.Scheme;
+        var domain = HttpContext.Request.Host.Value;
         var response = new ShortenUrlResponse
         {
             Key = shortenUrKey,
-            ShortUrl = $"www.tinyurl.com/{shortenUrKey}",
+            ShortUrl = $"{scheme}://{domain}/{shortenUrKey}",
             LongUrl = request.Url
         };
 
